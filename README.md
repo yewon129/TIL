@@ -4,4 +4,11 @@
 
 ## 목차
 
-[git] (./git)
+* [git](./git)
+  * 매일의 실습
+
+* [note](./note)
+  * 필기
+* [etc](./etc)
+  1. MARKDOWN 사용법
+
