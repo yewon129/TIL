@@ -79,7 +79,7 @@ s.istitle() : 타이틀 형식 여부
 
 #### 문자열 변경 메소드 (?immutable : 변경된 문자열의 값을 반환한다!)
 
-s.replace(old`(대상)`,new`(새로운값)`[,count`(선택`)]) : 바꿈
+s.replace(old`(대상)`,new`(새로운값)`[,count`갯수만큼만 시행`)]) : 바꿈
 
 s.strip([chars]) : 제거
 
@@ -91,7 +91,7 @@ s.split(sep = None, maxsplit = -1) : 분리
 * 문자열을 특정한 단위로 나눠 리스트로 반환
 * 공백은 빈 문자열에 포함하지 않음.
 
-'separator'.join : 합침
+'separator'.join([iterable]) : 합침
 
 * ['1', '2', '3'] 이것을 한 줄로 print
 * iterable에 문자열 아닌 값 있으면 error
