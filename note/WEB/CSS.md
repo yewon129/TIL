@@ -210,16 +210,17 @@ div > p {
 >
 > display에 따라 크기와 배치가 달라진다.
 
-* display: block 
-  * 아래로 쌓임
+* `display: block `
   * 줄 바꿈
+  * 아래로 쌓임
   * 화면 크기 **전체**의 가로 폭을 차지
   * 블록 레벨 요소 안에 인라인 레벨 요소가 들어 있음.
     * `div / ul, ol , li /p / hr / form`
-  * block : 너비를 가질수 없다면 자동으로 margin이 부여됨.
-* display: inline
-  * 우측으로 쌓임 
+  * block : 너비를 가질수 없다면 자동으로 margin이 부여됨. ( 기본 너비는 기본 100% )
+
+* `display: inline`
   * 줄 바꿈 일어나지 않는 행의 일부 요소
+  * 우측으로 쌓임 
   * **content 너비**만큼 가로 폭 차지
   * **width, height, margin-top, margin-bottom 지정 불가**
     * 정의가 content 너비만큼만 차지하므로 
@@ -228,21 +229,26 @@ div > p {
 
 ```css
 margin-right: auto;
+
 text-align: left;
 
+
 margin-left: auto;
+
 text-align: right;
+
 
 margin-right: auto;
 margin-left: auto;
+
 text-align: center;
 ```
 
-* display: inline-block
+* `display: inline-block`
   * block과 inline 레벨 요소의 특징
   * inline처럼 한줄에 표시 가능
   * block처럼 width, height, margin 속성 지정 가능
-* none
+* `display: none`
   * 화면에표시하지 않고, 공간 부여 X
   * visibility: hidden 이 공간 부여되는 것과 다르게 영역을 차지하지 않음.
 
@@ -265,9 +271,3 @@ text-align: center;
   * fixed : 고정위치
     * 스크롤 시에도 항상 같은 위치
     * viewport 기준으로 위치
-
-
-
-##### chrome devtools (ctrl + shift + i)
-
-* view and chages css
