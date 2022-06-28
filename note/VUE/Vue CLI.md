@@ -76,15 +76,186 @@ python 에서 pip 같은 존재.
 
 ### Pass Props & Emit Events
 
+![image-20220628232257229](Vue%20CLI/image-20220628232257229.png)
+
 * components
 
+  * Vue app은 자연스럽게 중첩된 컴포넌트 트리로 구성됨
+  * 컴포넌트간 부모-자식 관계가 구서되며 이들 사이에 필연적으로 위사 소통이 필요함
+  * 부모는 자식에게 데이터를 전달(Pass props)하며, 자식은 자신에게 일어난 일을 부모에게 알림(Emit event)
+    * 부모와 자식이 명확하게 정의된 인터페이스를 통해 격리된 상태를 유지할 수 있음
+
+  * **props는 아래로, events는 위로**
+  * 부모는 props를 통해 자식에게 데이터를 전달하고, 자식은 events를 통해 부모에게 메시지를 보냄.
+
+* 컴포넌트 구조
+
+  * 템플릿 (HTML)
+    * HTML의 body 부분
+    * 각 컴포넌트를 작성
+
+  * 스크립트(JavaScript)
+    * JavaScript가 작성되는 곳
+    * 컴포넌트 정보, 데이터, 메서드 등 vue 인스턴스가 구성하는 대부분이 작성됨
+
+  * 스타일 (CSS)
+    * CSS가 작성되며 컴포넌트의 스타일을 담당
+
+* 컴포넌트 등록 3단계
+
+  * 불러오기 (import)
+  * 등록하기 (register)
+  * 보여주기 (print)
+
+  ```vue
+  <template>
+  	<div id="app">
+          <img alt="Vue logo" src="./assets/logo.png">
+          <!-- 3. 보여주기 -->
+          <about></about>
+      </div>
+  </template>
+  
+  <script>
+  // 1. 불러오기
+  import About from './components/About.vue'
+  
+  export default {
+      name: 'App',
+      components: {
+          //2. 등록하기
+          About
+      }
+  }
+  </script>
+  ```
+
+  
+
+#### Props
+
+* props는 부모(상위) 컴포넌트의 정보를 전달하기 위한 사용자 지정 특성
+* 자식(하위) 컴포넌트는 props 옵션을 사용하여 수신하는 props를 명시적으로 선언해야 함
+* 데이터는 props 옵션을 사용하여 자식 컴포넌트로 전달됨
+* 주의
+  * 모든 컴포넌트 인스턴스에는 자체 격리된 범위가 있음
+  * 자식 컴포넌트의 템플릿에서 상위 데이터를 직접 참조할 수 없음.
+
+##### Static Props 작성
+
+* 자식 컴포넌트(About.vue)에서 보낼 prop 데이터 선언
+* `prop-data-name="value"`
+
+```vue
+//App.vue 
+<template>
+	<div id="app">
+        <img alt="Vue logo" src="./assets/logo.png">
+        <about my-message="This is prop data"></about>
+    </div>
+</template>
+```
+
+* 수신할 prop 데이터를 명시적으로 선언 후 사용
+
+```vue
+// About.vue
+
+<template>
+	<div>
+        <h1>About</h1>
+        <h2>{{ myMessage }}</h2>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'About',
+    props: {
+        myMessage: String,
+    }
+}
+</script>
+```
 
 
 
+##### Dynamic props 작성
+
+* v-bind directive를 사용해 부모의 데이터의 props를 동적으로 바인딩
+* 부모에게 데이터가 업데이트 될 때마다 자식 데이터로도 전달 됨
+
+```vue
+// App.vue
+
+<template>
+  <div id="app">
+    <img alt="Vue logo" src="./assets/logo.png">
+    <the-about 
+      my-message="This is prop data" 
+      :parent-data="parentData"
+    ></the-about>
+  </div>
+</template>
+
+
+<script>
+import TheAbout from './components/TheAbout.vue'
+
+export default {
+  name: 'App',
+  components: {
+    TheAbout,
+  },
+  data: function () {
+    return {
+      parentData: 'This is parent data by v-bind'
+    }
+  },
+}
+</script>
+```
+
+* 수신 할 데이터를 명시적으로 선언 후 사용
+
+```vue
+//TheAbout.vue
+
+<template>
+	<div>
+        <h1>About</h1>
+        <h2>{{ myMessage }}</h2>
+        <h2>{{ parentData }}</h2>
+    </div>
+</template>
+
+<script>
+export default {
+    name: 'About',
+    props: {
+        myMessage: String,
+        parentData: String,
+    }
+}
+</script>
+```
+
+##### Props 이름 컨벤션
+
+* during declaration (선언 시)
+  * camelCase
+* in template(HTML)
+  * kebab-case
+
+`컴포넌트의 data는 반드시 함수여야 함.`
+
+`JavaScript 숫자를 전달하려면 값이 JavaScript 표현식으로 평가되도록 v-bind를 사용해야함`
 
 
 
+##### 단방향 데이터 흐름
 
-
-
-
+* 모든 props는 하위 속성과 상위 속성 사이의 단방향 바인딩을 형성
+* 부모의 속성이 변경되면 자식 속성에게 전달되지만, 반대 방향으로는 안됨
+  * 자식 요소가 의도치 않게 부모 요소의 상태를 변경하여 앱의 데이터 흐름을 이해하기 어렵게 만드는 일을 방지
+* 부모 컴포넌트가 업데이트될 때마다 자식 요소의 모든 prop들이 최신 값으로 업데이트됨
