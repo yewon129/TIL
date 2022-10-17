@@ -15,3 +15,5 @@
 
 * [2_Python](./2_Python)
   * 실습 정리
+* git hub
+* 
