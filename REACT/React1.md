@@ -49,3 +49,14 @@
 npx create-react-app my-app
 npm start
 ```
+
+##### 파일 구조
+
+![image-20221102162736726](React1.assets/image-20221102162736726.png)
+
+
+
+
+
+### Redux
+
