@@ -19,3 +19,6 @@
 # VUE
 
 # WEB
+* HTML & CSS
+
+# REACT
