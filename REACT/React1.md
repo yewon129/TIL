@@ -59,4 +59,6 @@ npm start
 
 
 ### Redux
+* Redux Toolkit
+* middleware
 
