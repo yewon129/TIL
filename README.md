@@ -8,6 +8,8 @@
 
 # DJANGO
 
+![The web framework for perfectionists with deadlines | Django](https://static.djangoproject.com/img/logos/django-logo-negative.1d528e2cb5fb.png)
+
 # JAVASCRIPT
 
 # PYTHON
