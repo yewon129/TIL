@@ -1258,7 +1258,3 @@ const you = {
 you.qwer() //'준호김'
 ```
 
-
-
-#### Lodash
-
