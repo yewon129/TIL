@@ -15,11 +15,7 @@
 # PYTHON
 
 # SQLD
-1. is this list?
-2. no it's not
 
-10. This is List
-3. What is List?
 # Spring
 
 # VUE
