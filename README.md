@@ -4,7 +4,7 @@
 
 # CS
 
-# Django
+# DJANGO
 
 # JAVASCRIPT
 
@@ -12,11 +12,10 @@
 
 # SQLD
 
-# Spring
+# SPRING
 
 # VUE
 
 # WEB
-* HTML & CSS
 
 # REACT
